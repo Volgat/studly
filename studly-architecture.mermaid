@@ -1,0 +1,10 @@
+graph TD
+    A[Interface Utilisateur] -->|Requêtes HTTP| B[API Backend]
+    B -->|Requêtes SQL| C[Base de données]
+    B -->|Requêtes API| D[Gemini 1.5 Flash]
+    E[Système de Notification] --> A
+    F[Système d'Authentification] --> B
+    G[Système de Gestion des Cours] --> B
+    H[Réseau Social] --> B
+    I[Système de Recherche] --> B
+    J[Gestion des Groupes d'Étude] --> B

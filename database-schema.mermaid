@@ -1,0 +1,88 @@
+erDiagram
+    USERS ||--o{ PROFILES : has
+    USERS ||--o{ COURSES : creates
+    USERS ||--o{ ENROLLMENTS : participates
+    COURSES ||--o{ COURSE_MATERIALS : contains
+    COURSES ||--o{ ENROLLMENTS : has
+    USERS ||--o{ POSTS : creates
+    USERS ||--o{ COMMENTS : writes
+    POSTS ||--o{ COMMENTS : has
+    USERS ||--o{ GROUPS : joins
+    GROUPS ||--o{ GROUP_MEMBERS : has
+
+    USERS {
+        int id PK
+        string email
+        string password_hash
+        string user_type
+        datetime created_at
+        datetime updated_at
+    }
+
+    PROFILES {
+        int id PK
+        int user_id FK
+        string full_name
+        string bio
+        string avatar_url
+        json additional_info
+        datetime updated_at
+    }
+
+    COURSES {
+        int id PK
+        int creator_id FK
+        string title
+        text description
+        string level
+        int duration
+        datetime created_at
+        datetime updated_at
+    }
+
+    COURSE_MATERIALS {
+        int id PK
+        int course_id FK
+        string title
+        string file_type
+        string file_url
+        datetime uploaded_at
+    }
+
+    ENROLLMENTS {
+        int id PK
+        int user_id FK
+        int course_id FK
+        int progress
+        datetime enrolled_at
+    }
+
+    POSTS {
+        int id PK
+        int user_id FK
+        text content
+        datetime created_at
+    }
+
+    COMMENTS {
+        int id PK
+        int user_id FK
+        int post_id FK
+        text content
+        datetime created_at
+    }
+
+    GROUPS {
+        int id PK
+        string name
+        text description
+        int creator_id FK
+        datetime created_at
+    }
+
+    GROUP_MEMBERS {
+        int id PK
+        int group_id FK
+        int user_id FK
+        datetime joined_at
+    }
